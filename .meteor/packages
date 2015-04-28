@@ -15,3 +15,8 @@ fortawesome:fontawesome
 sanjo:jasmine
 velocity:html-reporter
 velocity:console-reporter
+aldeed:simple-schema
+aldeed:collection2
+aldeed:autoform
+momentjs:moment
+kevohagan:sweetalert

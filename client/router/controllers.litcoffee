@@ -2,9 +2,11 @@
 
 Example controller
 
-```
-@RouteControllers =
-  example: RouteController.extend
-    waitOn: -> Meteor.subscribe 'example'
-    data: -> someDataExample: ExampleCollection.find()
-```
+
+    @RouteControllers =
+      allPinkis: RouteController.extend
+        waitOn: -> Meteor.subscribe 'allPinkis'
+        data: -> pinkis: Pinkis.find()
+      singlePinki: RouteController.extend
+        waitOn: -> Meteor.subscribe 'singlePinki', this.params._id
+        data: -> Pinkis.findOne()
