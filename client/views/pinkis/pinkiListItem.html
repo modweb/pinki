@@ -1,6 +1,12 @@
 <template name='pinkiListItem'>
-  <h2>{{description}}</h2>
-  Created by <b>{{creatorUsername}}</b> at <b>{{timeCreated}}</b>.<br>
-  <h3>Pinkis Locked - {{pinkisLocked.length}}</h3>
-  <button class='btn btn-info'>Details</button>
+  <div>
+    <h2>{{description}}</h2>
+    Created by <b>{{creatorUsername}}</b> at <b>{{timeCreated}}</b>.<br>
+    <h3>Pinkis Locked - {{pinkisLocked.length}}</h3>
+    {{#if isLocked}}
+      <span class='label label-success'>Pinkis Locked!</span>
+    {{else}}
+      <button class='btn btn-success lock-pinkis'>Lock Pinkis!</button>
+    {{/if}}
+  </div>
 </template>

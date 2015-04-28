@@ -61,3 +61,33 @@
               Router.go 'pinki', _id: result
 
 ## Meteor Methods
+
+    Meteor.methods
+      lockPinkis: (pinkiId) ->
+
+Check logged in
+
+        if not this.userId? then throw new Meteor.Error 'You have to logged in to do that', 'not-logged-in'
+
+Lookup pinki
+
+        criteria = _id: pinkiId
+        pinki = Pinkis.find criteria
+
+        if not pinki? then throw new Meteor.Error "Could not find pinki with id #{pinkiId}", 'pinki-not-found'
+
+Check if user is already locked
+
+        if (_.findWhere pinki.pinkisLocked, userId: this.userId)? then throw new Meteor.Error 'You are already locked to this pinki!', 'already-locked'
+
+Lock pinkis
+
+        pinkiLocked =
+          userId: this.userId
+          username: Meteor.user().username
+          timeLocked: moment.utc().toDate()
+        update =
+          $addToSet:
+            pinkisLocked: pinkiLocked
+
+        Pinkis.update criteria, update
